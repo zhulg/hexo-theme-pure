@@ -5527,12 +5527,12 @@ pre .js .function {
 
 pre,
 .highlight {
-  background: #fafafa;
+  background: #4d4d4c;
   margin: 10px 0;
   padding: 15px 10px;
   overflow: auto;
   font-size: 13px;
-  color: #4d4d4c;
+  color: #fafafa;
   line-height: 1.5;
 }
 
