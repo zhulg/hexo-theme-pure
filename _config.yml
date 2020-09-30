@@ -189,7 +189,7 @@ profile:
   gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
   author: zhulg
   author_title: Developer & Technical Manager 
-  author_description: 个人简介。
+  author_description: lg.json@gmail.com
   location: BeiJing, China
   follow: https://github.com/zhulg
   # Social Links
