@@ -28,7 +28,11 @@
 <% var profile = theme.profile; %>
 <div class="panel panel-default panel-badger">
   <div class="panel-body">
-    <figure class="media">
+    <div class="qrcode-container text-center">
+      <strong>更多信息请添加公众号</strong>
+      <img src="<%= ( profile.gravatar ? gravatar(profile.gravatar, 128) : url_for(profile.gongzhonghao)) %>" alt="微信公众号二维码" class="img-responsive center-block" style="max-width: 500px;">
+    </div>
+    <!-- <figure class="media">
       <div class="media-left">
         <a href="<%= profile.follow %>" target="_blank" class="img-burn thumb-sm visible-lg">
           <img src="<%= ( profile.gravatar ? gravatar(profile.gravatar, 128) : url_for(profile.avatar)) %>" class="img-rounded w-full" alt="">
@@ -38,7 +42,7 @@
         <h3 class="media-heading"><a href="<%= profile.follow %>" target="_blank"><span class="text-dark"><%= profile.author %></span><small class="ml-1x"><%= profile.author_title %></small></a></h3>
         <div><%= profile.author_description %></div>
       </div>
-    </figure>
+    </figure> -->
   </div>
 </div>
 <% } %>
