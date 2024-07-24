@@ -185,7 +185,7 @@ fb_app_id:
 # profile
 profile:
   enabled: true # Whether to show profile bar
-  avatar: images/wangjie.png
+  avatar: images/liangjimantan.png
   gongzhonghao: images/gongzhonghao.png
   gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
   author: zhulg
