@@ -34,7 +34,9 @@ site:
     url: ../images/logo.png
   title: zhulg笔记 # 页面title
   favicon: /favicon.png
-  board: <p>仅供个人防遗忘笔记!</p> # 站点公告
+
+  board: <p><strong>文章首发公众号"良技漫谈"</strong></p>
+
   copyright: false # 底部版权信息
 
 # config
@@ -189,7 +191,7 @@ profile:
   gongzhonghao: images/gongzhonghao.png
   gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
   author: zhulg
-  author_title: Developer & Technical Manager
+  author_title: 公众号搜索 良技漫谈
   author_description: lg.json@gmail.com
   location: BeiJing, China
   follow: https://github.com/zhulg
