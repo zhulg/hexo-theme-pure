@@ -32,10 +32,10 @@ site:
     width: 40
     height: 40
     url: ../images/logo.png
-  title: zhulg笔记 # 页面title
+  title: "良技漫谈|技术博客|编程开发与成长思考" # 页面title
   favicon: /favicon.png
 
-  board: <p><strong>文章首发公众号"良技漫谈"</strong></p>
+  board: <p><strong>文章首发公众号"良技漫谈"</strong> - 提供最新的编程开发和技术人成长和思考分享！</p>
 
   copyright: false # 底部版权信息
 
