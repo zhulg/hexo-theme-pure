@@ -7,14 +7,15 @@
       const getArticleImage = (post) => {
         // 处理图片URL的辅助函数
         const normalizeImageUrl = (url) => {
-          if (!url) return '';
-          // 处理完整的URL
-          if (url.startsWith('http')) {
-            return url;
-          }
-          // 处理相对路径
+          if (!url) return `${config.url}/favicon.png`;  // 默认返回favicon
+          if (url.startsWith('http')) return url;
           return `${config.url}${url.startsWith('/') ? '' : '/'}${url}`;
         };
+
+        // 如果不是文章页面，直接返回默认图片
+        if (!post || !post.layout || post.layout !== 'post') {
+          return normalizeImageUrl(theme.site.logo.url || '/favicon.png');
+        }
 
         // 优先级：1.封面图 2.文章第一张图 3.默认logo
         if (post.cover) {
@@ -22,10 +23,12 @@
         }
 
         // 提取文章中的第一张图片
-        const imgReg = /<img.*?src="(.*?)".*?>/;
-        const match = post.content.match(imgReg);
-        if (match) {
-          return normalizeImageUrl(match[1]);
+        if (post.content) {
+          const imgReg = /<img.*?src="(.*?)".*?>/;
+          const match = post.content.match(imgReg);
+          if (match) {
+            return normalizeImageUrl(match[1]);
+          }
         }
 
         // 默认返回网站logo
@@ -36,38 +39,36 @@
       const generateKeywords = (post) => {
         const keywordSet = new Set();
         
-        // 1. 使用显式定义的关键词（最高优先级）
+        // 如果不是文章页面，返回网站默认关键词
+        if (!post || !post.layout || post.layout !== 'post') {
+          return config.keywords ? config.keywords.split(',').map(k => k.trim()) : [];
+        }
+
+        // 1. 使用显式定义的关键词
         if (post.keywords && Array.isArray(post.keywords)) {
           post.keywords.forEach(kw => keywordSet.add(kw.trim()));
         }
         
-        // 2. 使用标签（第二优先级）
+        // 2. 使用标签
         if (post.tags) {
           post.tags.forEach(tag => keywordSet.add(tag.name.trim()));
         }
 
-        // 3. 使用分类（如果有）
-        if (post.categories) {
-          post.categories.forEach(cat => keywordSet.add(cat.name.trim()));
+        // 3. 从标题提取关键词
+        if (post.title) {
+          const mainTitle = post.title.replace(/[|｜].*$/, '').trim();
+          keywordSet.add(mainTitle);
         }
 
-        // 4. 从标题提取主要关键词（移除分隔符和网站名称）
-        const mainTitle = post.title
-          .replace(/[|｜].*$/, '')  // 移除网站名称部分
-          .trim();
-        keywordSet.add(mainTitle);  // 添加完整标题作为关键词
-
-        // 5. 确保关键词质量
-        const keywords = Array.from(keywordSet)
-          .filter(keyword => 
-            keyword.length >= 2 &&  // 关键词至少2个字符
-            keyword.length <= 50 && // 关键词不超过50个字符
-            !/^[的了和与在是]+$/.test(keyword) // 排除无意义词
-          )
-          .slice(0, 8);  // 限制关键词数量，建议5-8个
-
-        return keywords;
+        return Array.from(keywordSet);
       };
+
+      // 检查是否为文章页面
+      const isPost = post && post.layout === 'post';
+      
+      // 获取日期，如果不存在则使用当前时间
+      const publishDate = post.date ? post.date.toISOString() : new Date().toISOString();
+      const modifiedDate = (post.updated || post.date || new Date()).toISOString();
     %>
 
     <script type="application/ld+json">
@@ -78,10 +79,10 @@
         "@type": "WebPage",
         "@id": "<%- config.url %><%- url_for(post.path) %>"
       },
-      "headline": "<%- post.title.replace(/[|｜].*$/, '').trim() %>",
-      "description": "<%- post.description %>",
-      "datePublished": "<%- post.date.toISOString() %>",
-      "dateModified": "<%- post.updated ? post.updated.toISOString() : post.date.toISOString() %>",
+      "headline": "<%- post.title ? post.title.replace(/[|｜].*$/, '').trim() : config.title %>",
+      "description": "<%- post.description || config.description %>",
+      "datePublished": "<%- publishDate %>",
+      "dateModified": "<%- modifiedDate %>",
       "author": {
         "@type": "Person",
         "name": "<%- config.author %>",
