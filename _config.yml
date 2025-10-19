@@ -35,7 +35,7 @@ site:
   title: "良技漫谈|技术博客|编程开发与成长思考" # 页面title
   favicon: /favicon.png
 
-  board: <p><strong>文章首发公众号"良技漫谈"</strong> - 提供最新的编程开发和技术人成长和思考分享！</p>
+  board: <p> 技术管理、成长、产品研发思考分享！</p>
 
   copyright: false # 底部版权信息
 
@@ -190,15 +190,15 @@ profile:
   avatar: images/liangjimantan.png
   gongzhonghao: images/gongzhonghao.png
   gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
-  author: zhulg
-  author_title: 公众号搜索 良技漫谈
+  author: 良技漫谈
+  author_title: 全栈开发及技术管理分享
   author_description: lg.json@gmail.com | 技术博客 | 编程开发 | 全栈开发
   location: BeiJing, China
-  follow: https://github.com/zhulg
+  follow: https://zhulg.github.io/
   # Social Links
   social:
     links:
-      github: https://github.com/zhulg
+      # github: https://github.com/zhulg
       # weibo: http://weibo.com/cofess
       # twitter: https://twitter.com/iwebued
       # # facebook: /
@@ -217,7 +217,7 @@ profile:
     平面设计: ★★★☆☆
   # My Personal Links
   links:
-    Github: https://github.com/zhulg
+    # Github: https://github.com/zhulg
     # Blog: http://blog.cofess.com
     # 微博: http://weibo.com/cofess
     # 花瓣: http://huaban.com/cofess
